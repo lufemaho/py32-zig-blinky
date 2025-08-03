@@ -6,7 +6,7 @@ Basic blinky project for the PY3F002 using zig.
 I used a dev board from [aliexpress](https://www.aliexpress.us/item/3256807946354940.html) for this project.
 There are other solutions for each of the following tools, but for programming and debugging I used
 
-- [pyOCD](https://pyocd.io/)(it comes with support for the P32F002 built in already),
+- [pyOCD](https://pyocd.io/),
 - arm-none-eabi-gdb from the [arm compiler gnu toolchain](https://developer.arm.com/downloads/-/arm-gnu-toolchain-downloads), and
 - the Raspberry Pi [debug probe](https://www.raspberrypi.com/documentation/microcontrollers/debug-probe.html)
 
@@ -15,6 +15,8 @@ For debugging you need to know how to use gdb.
 # Usage
 The following instructions assume zig, pyOCD, and arm-none-eabi-gdb can be found in your current environment.
 Otherwise you may enter the full path to the executables.
+First we need to add support for the PY32 family with `pyocd pack install py32`.
+
 The following steps are necessary to compile and run the program.
 
 1. Connect a LED and with a suitable current limiting resistor to GPIO A0.
