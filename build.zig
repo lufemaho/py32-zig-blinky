@@ -3,7 +3,6 @@ const std = @import("std");
 const Target = std.Target;
 const Feature = std.Target.Cpu.Feature;
 
-
 pub fn build(b: *std.Build) void {
     const target = b.resolveTargetQuery(.{
         .cpu_arch = .thumb,
@@ -46,19 +45,7 @@ pub fn build(b: *std.Build) void {
     elf.link_gc_sections = true;
     elf.link_data_sections = true;
     elf.link_function_sections = true;
-    // elf.bundle_compiler_rt = false;
     elf.entry = .{ .symbol_name = "Reset_Handler" };
     elf.setLinkerScript(b.path("PY32F002A.ld"));
-    // elf.setVerboseLink(true);
     b.installArtifact(elf);
-
-    const obj = b.addObject(.{
-        .name = "first_try",
-        .root_module = firmware_module,
-    });
-    const install_obj = b.addInstallArtifact(
-        obj,
-        .{ .dest_dir = .{ .override = .prefix } },
-    );
-    b.getInstallStep().dependOn(&install_obj.step);
 }
