@@ -13,7 +13,7 @@ There are other solutions for each of the following tools, but for programming a
 For debugging you need to know how to use gdb.
 
 # Usage
-The following instructions assume zig, pyOCD, and arm-none-eabi-gdb are installed in a directory that is added to the PATH variable of your current environment.
+The following instructions assume zig, pyOCD, and arm-none-eabi-gdb can be found in your current environment.
 Otherwise you may enter the full path to the executables.
 The following steps are necessary to compile and run the program.
 
@@ -21,13 +21,13 @@ The following steps are necessary to compile and run the program.
 2. Connect the SWD interface of your debug probe with that of the PY32F002. 
 2. Go the project folder in a terminal, then
 3. Compile the program using `zig build` or `zig build --release=small`.
-4. Start pyocd: `pyocd gdbserver --port 3333 --target py32f002xx5`
-5. Start gdb in a second terminal (from the project as well): `arm-none-eabi-gdb zig-out/bin/py32_zig_blinky.elf`
-6. In gdb enter `target remote localhost:3333`, `load`,`monitor reset halt`, and `continue`
+4. Start pyocd: `pyocd gdbserver --port 3333 --target py32f002xx5`.
+5. Start gdb in a second terminal (from the project as well): `arm-none-eabi-gdb zig-out/bin/py32_zig_blinky.elf`.
+6. In gdb enter `target remote localhost:3333`, `load`,`monitor reset halt`, and `continue`.
 
 You should now see your LED blinking.
 
-To add a breakpoint in main you have to enter `b main.main`. This is due to how I set up the project at the moment. I might change it, so that the usual `b main` can be used.
+To add a breakpoint in main you have to enter `b main.main`. This is due to how I set up the project at the moment.
 
 This project was tested on a PY32F002 only, but should work on other PUYA controllers as well.
 
@@ -35,9 +35,9 @@ This project was tested on a PY32F002 only, but should work on other PUYA contro
 I took some inspiration from https://github.com/jaydcarlsons/py32-template and https://github.com/sphaerophoria/pico-zig.
 
 I used microzig's [regz](https://github.com/ZigEmbeddedGroup/microzig/tree/main/tools/regz) tool to generate the peripheral definitions and copied their mmio.zig,
-but stripped all code that referenced microzig itself. I also used it to generate a interrupt vector table.
+but stripped all code that referenced microzig itself. I also used regz to generate a basis for the interrupt vector table.
 However, in both cases I had to do some manual changes, because the svd file from PUYA seems to have several errors.
-This is microzig's license:
+I dont know anything about licenses, so just in case, this is microzig's license:
 
 
 Copyright (c) Zig Embedded Group contributors
