@@ -34,7 +34,7 @@ To add a breakpoint in main you have to enter `b main.main`. This is due to how 
 This project was tested on a PY32F002 only, but should work on other PUYA controllers as well.
 
 # Acknowledgements
-I took some inspiration from https://github.com/jaydcarlsons/py32-template and https://github.com/sphaerophoria/pico-zig.
+I took some inspiration from https://github.com/jaydcarlson/py32-template and https://github.com/sphaerophoria/pico-zig.
 
 I used microzig's [regz](https://github.com/ZigEmbeddedGroup/microzig/tree/main/tools/regz) tool to generate the peripheral definitions and copied their mmio.zig,
 but stripped all code that referenced microzig itself. I also used regz to generate a basis for the interrupt vector table.
