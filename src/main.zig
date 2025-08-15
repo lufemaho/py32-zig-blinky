@@ -4,13 +4,13 @@ const std = @import("std");
 pub fn main() noreturn {
     // init gpio
     rcc.IOPENR.modify(.{ .GPIOAEN = 1 });
-    GpioA.MODER.modify(.{ .MODE0 = 1 });
+    gpio_a.MODER.modify(.{ .MODE0 = 1 });
 
     // blinky loop
     while (true) {
-        GpioA.BSRR.modify(.{ .BS0 = 1 });
+        gpio_a.BSRR.modify(.{ .BS0 = 1 });
         wait_approx_half_a_second();
-        GpioA.BSRR.modify(.{ .BR0 = 1 });
+        gpio_a.BSRR.modify(.{ .BR0 = 1 });
         wait_approx_half_a_second();
     }
 }
@@ -29,5 +29,5 @@ fn wait_approx_half_a_second() void {
     }
 }
 
-const GpioA = py32.peripherals.GPIOA;
+const gpio_a = py32.peripherals.GPIOA;
 const rcc = py32.peripherals.RCC;
